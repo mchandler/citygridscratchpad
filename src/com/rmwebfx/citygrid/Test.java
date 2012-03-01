@@ -24,7 +24,7 @@ public class Test {
 	    try {
 	        CGPlacesSearchResults results = search.search();
 	        CGPlacesSearchLocation[] locations = results.getLocations();
-	        CGPlacesSearchLocation location = locations[1];
+	        CGPlacesSearchLocation location = locations[2];
 	        int count = locations.length;
 	        System.out.println("Total matches: " + new Integer(results.getTotalHits()).toString());
 	        System.out.println("First Match: " + location.getName() + " - id: " + location.getLocationId());
@@ -36,6 +36,7 @@ public class Test {
 	
 	public static void testPlace() {
 		// 35777906
+		// 664259190
 		CityGrid.setPublisher("10000002304");
 		CityGrid.setSimulation(false);
 		
@@ -45,7 +46,9 @@ public class Test {
 		try {
 			CGPlacesDetailResults results = detail.detail();
 			CGPlacesDetailLocation location = results.getLocation();
+			CGPlacesDetailReviews reviews = location.getReviews();
 			System.out.println("Worked! This is " + location.getName());
+			System.out.println("Total Reviews: " + new Integer(reviews.getCount()).toString());
 		} catch (CGException e) {
 			System.out.println("Hosed: " + e);
 		}
